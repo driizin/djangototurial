@@ -76,8 +76,18 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'djangototurial', # <-- Nome do BD que você criará no MySQL Workbench
+        'USER': 'root',                 # <-- Seu nome de usuário do MySQL (ex: root)
+        'PASSWORD': '',               # <-- Sua senha do MySQL
+        'HOST': '127.0.0.1',                         # <-- Geralmente '127.0.0.1' para local
+        'PORT': '3306',                              # <-- Porta padrão do MySQL (verifique a sua)
+        'OPTIONS': {
+            'sql_mode': 'traditional', # Recomendado para evitar problemas de compatibilidade
+            'charset': 'utf8mb4', # Define o charset da conexão
+            'collation': 'utf8mb4_unicode_ci', # Define o collation da conexão
+        },
+        'CONN_MAX_AGE': None, # Usar None para conexões ilimitadas, ou um valor para pool
     }
 }
 
