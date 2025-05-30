@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <div class="container px-5 py-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Atualizar Pessoa</h1>
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg px-4 me-sm-3">Salvar Alterações</button>
+                            <a href="{% url 'index-pessoa' %}" class="btn btn-outline-light btn-lg px-4">Voltar</a>
+                        </div>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

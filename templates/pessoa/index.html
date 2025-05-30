@@ -1,0 +1,50 @@
+{% extends '_base.html'%}
+
+{% block content %}
+    <div class="container px-5 py-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-10 col-xl-9 col-xxl-8">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Listagem Geral de Pessoas</h1>
+                    <p class="lead fw-normal text-white-50 mb-4">Gerencie seus registros de pessoas de forma eficiente.</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start mb-4">
+                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'add-pessoa' %}">Criar Nova Pessoa</a>
+                    </div>
+
+                    <table class="table table-dark table-striped table-hover mt-4">
+                        <thead>
+                            <tr>
+                                <th> Nome </th>
+                                <th> Sobrenome </th>
+                                <th> Idade </th>
+                                <th> Nacionalidade </th>
+                                <th> Endereço </th>
+                                <th> Ações </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pessoa in pessoas %}
+                            <tr>
+                                <td> {{ pessoa.nome }} </td>
+                                <td> {{ pessoa.sobrenome }}</td>
+                                <td> {{ pessoa.idade }} </td>
+                                <td> {{ pessoa.nacionalidade }} </td>
+                                <td> {{ pessoa.endereco }} </td>
+                                <td>
+                                    <a href="{% url 'detalhe-pessoa' pessoa.id %}" class="btn btn-info btn-sm me-1">Detalhe</a>
+                                    <a href="{% url 'edit-pessoa' pessoa.id %}" class="btn btn-warning btn-sm me-1">Atualizar</a>
+                                    <a href="{% url 'delete-pessoa' pessoa.id %}" class="btn btn-danger btn-sm">Deletar</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center text-white-50">Nenhuma pessoa cadastrada. <a href="{% url 'add-pessoa' %}" class="text-white">Crie uma agora!</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
